@@ -1,3 +1,3 @@
 # Data_structures
 
-Implementation of data structures in Python. 
+Simple implementation of data structures in Python. 
