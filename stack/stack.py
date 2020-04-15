@@ -1,5 +1,9 @@
 
 class Stack:
+    """
+    Basic Stack class.
+    Assume that the stack can hold max_size number of items.
+    """
 
     def __init__(self, max_size=10):
         self.max_size = max_size
@@ -74,4 +78,5 @@ def create_stack(create_own=True, n_max=10):
 
 
 if __name__ == "__main__":
-    create_stack(True)
+    my_stack_instance = create_stack(True)
+
