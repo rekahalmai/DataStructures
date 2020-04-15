@@ -2,21 +2,29 @@
 class Stack:
     """
     Basic Stack class.
-    Assume that the stack can hold max_size number of items.
+    Assume that the stack can hold max_size number of items and can
+    hold any type of items.
+
+    _size()    - returns the size of stack
+    is_empty() - returns boolean whether stack is empty
+    is_full()  - returns boolean whether stack is full
+    pop()      - drop last element of stack
+    push()     - add new_item to stack
+    peek()     - look at last element of stack
     """
 
     def __init__(self, max_size=10):
         self.max_size = max_size
         self.array = []
 
-    def stack_size(self):
+    def _size(self):
         return len(self.array)
 
     def is_empty(self):
-        return self.stack_size() == 0
+        return self._size() == 0
 
     def is_full(self):
-        return self.stack_size() == self.max_size
+        return self._size() == self.max_size
 
     def pop(self):
         if self.is_empty():
@@ -32,7 +40,8 @@ class Stack:
         else:
             self.array.append(new_item)
 
-
+    def peek(self):
+        return self.array[self._size() - 1]
 
 def create_stack(create_own=True, n_max=10):
     """
