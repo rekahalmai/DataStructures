@@ -18,29 +18,35 @@ class Stack:
         self.array = []
 
     def _size(self):
+        """ Returns the size of the stack. Bounded by max_size."""
         return len(self.array)
 
     def is_empty(self):
+        """ Returns True if the stack is empty and False if it is not"""
         return self._size() == 0
 
     def is_full(self):
+        """Returns True if the stack is full and False if it is not"""
         return self._size() == self.max_size
 
     def pop(self):
+        """ Removes the last added item in the stack """
         if self.is_empty():
-            print("Underflow, can't drop.")
-            return None
+            return IndexError("No elements in stack, can't pop element.")
         else:
             last_item = self.array.pop()
             return last_item
 
     def push(self, new_item):
+        """ Adds an element to the stack"""
         if self.is_full():
-            print("Overflow, can't add.")
+            return IndexError("Stack is full, can't add element")
         else:
             self.array.append(new_item)
+            return
 
     def peek(self):
+        """ Returns the last element of the stack. """
         return self.array[self._size() - 1]
 
 def create_stack(create_own=True, n_max=10):
