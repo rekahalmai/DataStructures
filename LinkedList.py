@@ -43,14 +43,14 @@ class LinkedList():
     def __init__(self):
         self._len = 0
         self.head = None
-        # self.current_node = None
-
 
     def list_len(self):
+        """Return the length of the list"""
         return self._len
 
 
     def add_node(self, node):
+        """Add node to the list. """
         if self._len == 0:
             self.add_first_node(node)
         else:
@@ -58,14 +58,15 @@ class LinkedList():
 
 
     def add_first_node(self, node):
+        """Insert the first node. O(1) complexity. """
         _node = node
         _node.previous, _node.next = None, None
         self.head = _node
         self._len += 1
-        print("added first node")
 
 
     def insert_node_at_end(self, node):
+        """Insert node when there is already nodes in the list. O(n) complexity."""
         _node = node
         current_node = self.head
         while current_node.next is not None:
@@ -74,11 +75,11 @@ class LinkedList():
         _node.previous = current_node
         _node.next = None
         current_node.next = _node
-
         self._len += 1
 
 
     def delete_first_node(self):
+        """Delete first node. O(1) complex. """
         if self._len == 0:
             print("Double linked list is empty, cannot delete.")
         else:
@@ -87,6 +88,7 @@ class LinkedList():
 
 
     def delete_last_node(self):
+        """Delete the last node. This is the node where node.next is None. O(n) complexity."""
         if self._len == 0:
             print("Double linked list is empty, cannot delete.")
         else:
@@ -98,25 +100,29 @@ class LinkedList():
 
             previous_node.next = None
             current_node.data, current_node.previous, current_node.next = None, None, None
-            #current_node.previous, current_node.data = None, None
             self._len -= 1
 
 
     def create_node_value_list(self):
+        """Returns a list with node values. The None value is not returned. """
         current_node = self.head
         node_value_list = []
         while current_node is not None:
-            node_value_list.append(current_node.data)
-            current_node = current_node.next
+            if current_node.data is None:
+                current_node = current_node.next
+            else:
+                node_value_list.append(current_node.data)
+                current_node = current_node.next
         return node_value_list
 
 
     def print_values(self):
+        """Print data for each node"""
         node_value_list = self.create_node_value_list()
         print(node_value_list)
 
     def search_value_in_list(self, value):
-        """"""
+        """ Search wheter value is in list and return as a list - O(n) complexity"""
         current_node = self.head
         results = []
         while current_node is not None:
@@ -131,7 +137,7 @@ class LinkedList():
 
 
     def delete_value(self, value):
-        """ Delete the nodes that have the same value as value """
+        """ Delete the nodes that have the same data as value - O(n) complexity"""
         current_node, previous_node = self.head, self.head
 
         while current_node.next is not None:
@@ -148,6 +154,7 @@ class LinkedList():
 
 
 def main():
+    """Example for a double linked list creation."""
     node1 = Node("H")
     node2 = Node("I")
     node3 = Node("T")
