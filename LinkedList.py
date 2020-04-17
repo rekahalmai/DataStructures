@@ -43,24 +43,89 @@ class LinkedList():
         # self.current_node = None
 
 
+    def list_len(self):
+        return self._len
+
+
     def add_node(self, node):
         if self._len == 0:
-            pass
+            self.add_first_node(node)
         else:
-            pass
+            self.insert_node_at_end(node)
 
 
     def add_first_node(self, node):
         _node = node
         _node.previous, _node.next = None, None
-        self.current_node = _node
         self.head = _node
         self._len += 1
 
 
-    def add_node_last(self, node):
+    def insert_node_at_end(self, node):
         _node = node
-        _node.previous = self.current_node
-        _node.next = None
-        self.current_node = _node
 
+        current_node = self.head()
+        while current_node.next is not None:
+            current_node = current_node.next
+
+        current_node.next = _node
+
+        _node.previous = current_node
+        _node.next = None
+
+        self._len += 1
+
+
+    def delete_first_node(self):
+        if self._len == 0:
+            print("Double linked list is empty, cannot delete.")
+        else:
+            self.head = self.head.next
+            self._len -= 1
+
+
+    def delete_last_node(self):
+        if self._len == 0:
+            print("Double linked list is empty, cannot delete.")
+        else:
+            current_node, previous_node = self.head, self.head
+
+            while current_node.next is not None:
+                current_node = current_node.next
+                previous_node = current_node
+            previous_node.next = None
+            self._len -= 1
+
+
+    def create_node_value_list(self):
+
+        current_node = self.head
+        node_value_list = []
+        while current_node is not None:
+            node_value_list.append(current_node.data)
+            current_node = current_node.next
+        return node_value_list
+
+
+    def print_values_in_list(self):
+        node_value_list = self.create_node_value_list()
+        print(node_value_list)
+        return
+
+    def search_value_in_list(self, value):
+        current_node = self.head
+        results = []
+        while current_node is not None:
+            if current_node.value == value:
+                print(f"Found the value {value} at node {current_node}")
+                results.append(current_node)
+
+        return results
+
+
+    def delete_value(self, value):
+        current_node, previous_node = self.head, self.head
+
+        while current_node is not None:
+            if current_node.value == value:
+                previous_node.next = current_node.next
