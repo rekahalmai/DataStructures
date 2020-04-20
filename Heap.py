@@ -3,27 +3,27 @@ from math import floor
 class Heap:
 
     def __init__(self, heap_array, heap_size):
-        self.heap_array = heap_array
+        self.heap = heap_array
         self.heap_size = heap_size
         self._len = len(heap_array)
 
     def left(self, i):
         if 2*i <= self._len:
-            return self.heap_array[2*i]
+            return self.heap[2 * i]
         else:
             print("Index out of range, no left child exist")
             return None
 
     def right(self, i):
         if 2*i+1 <= self._len:
-            return self.heap_array[2*i+1]
+            return self.heap[2 * i + 1]
         else:
             print("Index out of range, no right child exist")
             return None
 
     def parent(self, i):
         if (int(floor(i/2)) < self._len) and (int(floor(i/2)) != i):
-            return self.heap_array[int(floor(i/2))]
+            return self.heap[int(floor(i / 2))]
         else:
             print("No parent exist")
             return None
@@ -36,16 +36,16 @@ class Heap:
         left, right = self.left(i), self.right(i)
         largest = i
 
-        if (left is not None) and (left <= self.heap_size) and (self.heap_array[left] > self.heap_array[i]):
+        if (left is not None) and (left <= self.heap_size) and (self.heap[left] > self.heap[i]):
             largest = left
 
-        if (right is not None) and (right <= self.heap_size) and (self.heap_array[right] > self.heap_array[i]):
+        if (right is not None) and (right <= self.heap_size) and (self.heap[right] > self.heap[i]):
             largest = right
 
         if largest != i:
-            value = self.heap_array[i]
-            self.heap_array[i] = self.heap_array[largest]
-            self.heap_array[largest] = value
+            value = self.heap[i]
+            self.heap[i] = self.heap[largest]
+            self.heap[largest] = value
 
             self.max_heapify(largest)
             print("Called max heapi")
