@@ -16,6 +16,16 @@ class Queue:
         """ Returns True if the queue is full and False if it is not full"""
         return self.size == self.max_size
 
+
+    def peek(self):
+        """ Returns first element of the queue """
+        if self.is_empty():
+            print("Queue is empty")
+            return
+        else:
+            return self.array[self.head]
+
+
     def enqueue(self, new_element):
         """ Adds an element to the end of the queue """
 
@@ -31,6 +41,7 @@ class Queue:
             self.size += 1
             print(self.array)
             return self.array
+
 
     def dequeue(self):
         """ Drops the first element of the queue and returns the changed queue"""
@@ -50,14 +61,6 @@ class Queue:
             print(self.array, self.size)
             return self.array
 
-    def peek(self):
-        """ Returns first element of the queue """
-        if self.is_empty():
-            print("Queue is empty")
-            return
-        else:
-            return self.array[self.head]
-
 
 def main():
     my_queue = Queue()
@@ -69,6 +72,7 @@ def main():
         my_queue.dequeue()
 
     print(my_queue)
+
 
 if __name__ == "__main__":
     main()
